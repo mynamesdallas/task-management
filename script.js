@@ -6,16 +6,16 @@ const modalFooter = document.querySelector(".modal-footer");
 const outputContainer = document.querySelector("#outputContainer");
 
 openBtn.addEventListener("click", () => {
-    modal.showModal()
-})
+    modal.showModal();
+});
 
 closeBtn.addEventListener("click", () => {
     modal.close();
-})
+});
 
 const workTitleInput = document.createElement("input");
 workTitleInput.type = "text";
-workTitleInput.className = "work-title-input, input";
+workTitleInput.className = "work-title-input input";
 workTitleInput.placeholder = "Enter work here...";
 
 const employeeInput = document.createElement("input");
@@ -36,29 +36,46 @@ const sendTask = document.createElement("button");
 sendTask.id = "sendTaskBtn";
 sendTask.textContent = "Assign Task";
 
-sendTask.addEventListener("click", () => {
+const deleteTask = document.createElement("button");
+deleteTask.id = "deleteTaskBtn";
+deleteTask.textContent = "Remove from list"
 
+sendTask.addEventListener("click", () => {
     const workTitle = workTitleInput.value;
-    workTitleInput.value = "";
     const assignedTo = employeeInput.value;
-    employeeInput.value = "";
     const location = locationInput.value;
-    locationInput.value = "";
     const notes = notesInput.value;
+
+    if (!workTitle.trim() && !assignedTo.trim()) return;
+
+    workTitleInput.value = "";
+    employeeInput.value = "";
+    locationInput.value = "";
     notesInput.value = "";
 
-    const outputDisplay = document.querySelector("#outputContainer");
-    const titleDisplay = document.createElement("h3");
-    const employeeDisplay = document.createElement("h2");
+    const taskCard = document.createElement("div");
+    taskCard.className = "task-card";
 
-    outputDisplay.append(employeeDisplay, titleDisplay)
-    titleDisplay.textContent = workTitle;
-    employeeDisplay.textContent = assignedTo;
-    
-})
+    taskCard.innerHTML = `
+        <div class="task-card-header">
+            <h3 class="task-title">${workTitle || "Untitled Task"}</h3>
+            <span class="task-assignee">${assignedTo || "Unassigned"}</span>
+        </div>
+        <div class="task-card-body">
+            ${location ? `<p class="task-location">📍 ${location}</p>` : ''}
+            ${notes ? `<p class="task-notes">${notes}</p>` : ''}
+        </div>
+    `;
+
+    taskCard.appendChild(deleteTask)
+
+    deleteTask.addEventListener("click", () => {
+        taskCard.remove()
+    })
+
+    outputContainer.appendChild(taskCard);
+    modal.close();
+});
 
 modalFooter.appendChild(sendTask);
-
 modalInputs.append(workTitleInput, employeeInput, locationInput, notesInput);
-
-modal.append(modalInputs, modalFooter);
