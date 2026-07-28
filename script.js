@@ -37,6 +37,7 @@ sendTask.id = "sendTaskBtn";
 sendTask.textContent = "Assign Task";
 
 sendTask.addEventListener("click", () => {
+
     const workTitle = workTitleInput.value;
     workTitleInput.value = "";
     const assignedTo = employeeInput.value;
@@ -47,18 +48,18 @@ sendTask.addEventListener("click", () => {
     notesInput.value = "";
 
     const outputDisplay = document.querySelector("div");
-    outputDisplay.className = "output-display";
-    const titleDisplay = document.createElement("h2");
+    outputDisplay.className = "output-display-container";
+    const titleDisplay = document.createElement("h3");
+    const employeeDisplay = document.createElement("h2");
 
-    outputDisplay.appendChild(titleDisplay)
+    outputDisplay.append(employeeDisplay, titleDisplay)
     titleDisplay.textContent = workTitle;
-
-
+    employeeDisplay.textContent = assignedTo;
     
 })
 
-modalFooter.appendChild(sendTask)
+modalFooter.appendChild(sendTask);
 
 modalInputs.append(workTitleInput, employeeInput, locationInput, notesInput);
 
-modal.append(modalInputs, modalFooter)
+modal.append(modalInputs, modalFooter);
