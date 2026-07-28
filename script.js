@@ -47,8 +47,7 @@ sendTask.addEventListener("click", () => {
     const notes = notesInput.value;
     notesInput.value = "";
 
-    const outputDisplay = document.querySelector("div");
-    outputDisplay.className = "output-display-container";
+    const outputDisplay = document.querySelector("#outputContainer");
     const titleDisplay = document.createElement("h3");
     const employeeDisplay = document.createElement("h2");
 
