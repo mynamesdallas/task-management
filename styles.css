@@ -28,7 +28,8 @@ header {
     justify-content: flex-end;
 }
 
-#openModalBtn {
+#openModalBtn,
+#sendTaskBtn {
     align-self: end;
     margin: 1rem;
     padding: .5rem;
@@ -40,7 +41,8 @@ header {
     font-size: large;
 }
 
-#openModalBtn:hover {
+#openModalBtn:hover,
+#sendTaskBtn:hover {
     background-color: oklch(70.4% 0.14 182.503);
     transform: translateY(4px);
     box-shadow: -1px -.25px 3px;
@@ -63,9 +65,10 @@ main {
 }
 
 #outputContainer {
-    height: 90%;
-    width: 90%;
-    border: 1px solid;
+    height: 100%;
+    width: 100%;
+    border: 1px solid oklch(47.6% 0.114 61.907);
+    border-radius: 7px;
 }
 
 dialog {
