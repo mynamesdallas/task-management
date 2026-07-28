@@ -90,3 +90,13 @@ dialog {
     font-size: 1.5rem;
     cursor: pointer;
 }
+
+.modal-body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.input {
+    margin: .25rem;
+}
